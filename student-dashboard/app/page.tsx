@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div className='space-y-8'>
-      <div className='bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white'>
+      <div className='bg-linear-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white'>
         <div className='flex flex-col md:flex-row md:items-center justify-between'>
           <div>
             <h1 className='text-3xl font-bold mb-2'>Dashboard Overview</h1>
@@ -61,7 +61,7 @@ export default function Home() {
               <div className='mt-4 pt-4 border-t border-gray-100'>
                 <div className='h-2 bg-gray-200 rounded-full overflow-hidden'>
                   <div
-                   className={`h-full bg-gradient-to-r ${stat.color.replace('bg-', 'from-')} ${stat.color.replace('500','600').replace('bg-','to-')}`}
+                   className={`h-full bg-linear-to-r ${stat.color.replace('bg-', 'from-')} ${stat.color.replace('500','600').replace('bg-','to-')}`}
                    style={{width:stat.value.includes('%') ? stat.value:"85%"}}/>
 
                 </div>
@@ -127,13 +127,13 @@ export default function Home() {
             ))}
           </div>
 
-          <button className='w-full mt-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300'>
+          <button className='w-full mt-6 py-3 bg-linear-to-r from-blue-600 to-blue-700 text-white rounded-xl font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300'>
             View Calander
           </button>
         </div>
       </div>
 
-      <div className='bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-6 text-white'>
+      <div className='bg-linear-to-r from-gray-900 to-gray-800 rounded-2xl p-6 text-white'>
         <h2 className='text-xl font-bold mb-4'>Performance Overview</h2>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
 

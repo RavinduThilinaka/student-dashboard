@@ -44,22 +44,22 @@ export default function Sidebar() {
     >
       <div className="flex flex-col h-full relative">
      
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+        <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"></div>
         
       
         <div className={`px-4 py-6 flex items-center ${collapsed ? 'justify-center' : 'justify-between'}`}>
           {!collapsed && (
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-linear-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">E</span>
               </div>
-              <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="font-bold text-xl bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 EduPro
               </span>
             </div>
           )}
           {collapsed && (
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
               <span className="text-white font-bold text-lg">E</span>
             </div>
           )}
@@ -97,7 +97,7 @@ export default function Sidebar() {
                       collapsed ? 'justify-center' : 'gap-4'
                     } p-3 rounded-xl transition-all duration-300 group ${
                       isActive
-                        ? 'bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600'
+                        ? 'bg-linear-to-r from-blue-50 to-indigo-50 text-blue-600'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                     onMouseEnter={() => setHoveredItem(item.label)}
@@ -105,7 +105,7 @@ export default function Sidebar() {
                   >
                     
                     {isActive && (
-                      <div className="absolute left-0 w-1 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-r-full" />
+                      <div className="absolute left-0 w-1 h-8 bg-linear-to-b from-blue-500 to-purple-500 rounded-r-full" />
                     )}
                     
                    
@@ -113,7 +113,7 @@ export default function Sidebar() {
                       isActive 
                         ? 'bg-white shadow-md' 
                         : isHovered 
-                        ? `bg-gradient-to-r ${item.gradient} shadow-md`
+                        ? `bg-linear-to-r ${item.gradient} shadow-md`
                         : ''
                     }`}>
                       <item.icon className={`h-5 w-5 transition-all duration-300 ${
@@ -156,7 +156,6 @@ export default function Sidebar() {
           </ul>
         </nav>
 
-     
         <div className="px-3 py-6 border-t border-gray-100">
           <ul className="space-y-2">
             {bottomMenuItems.map((item) => {
@@ -173,7 +172,7 @@ export default function Sidebar() {
                     onMouseLeave={() => setHoveredItem(null)}
                   >
                     <div className={`relative p-2 rounded-lg transition-all duration-300 ${
-                      isHovered ? `bg-gradient-to-r ${item.gradient} shadow-md` : ''
+                      isHovered ? `bg-linear-to-r ${item.gradient} shadow-md` : ''
                     }`}>
                       <item.icon className={`h-5 w-5 transition-all duration-300 ${
                         isHovered ? 'text-white' : 'text-gray-500 group-hover:text-gray-700'

@@ -89,22 +89,21 @@ export default function CoursesPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">📚 Courses</h1>
           <p className="text-gray-600">Manage and track all your courses</p>
         </div>
-        <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center gap-2 shadow-lg">
+        <button className="px-6 py-3 bg-linear-to-r from-blue-600 to-blue-700 text-white rounded-xl font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center gap-2 shadow-lg">
           <Plus className="h-5 w-5" />
           Add New Course
         </button>
       </div>
 
-      {/* Search and Filter */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
         <div className="flex flex-col lg:flex-row gap-4">
-          {/* Search */}
+        
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -116,7 +115,6 @@ export default function CoursesPage() {
             />
           </div>
           
-          {/* Filters */}
           <div className="flex gap-3">
             <select
               value={selectedCategory}
@@ -144,7 +142,6 @@ export default function CoursesPage() {
           </div>
         </div>
 
-        {/* Active Filters */}
         {(searchQuery || selectedCategory !== 'all' || selectedLevel !== 'all') && (
           <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-100">
             <span className="text-sm text-gray-500">Filters:</span>
@@ -170,14 +167,12 @@ export default function CoursesPage() {
         )}
       </div>
 
-      {/* Results */}
       <div className="flex justify-between items-center">
         <p className="text-gray-600">
           Showing <span className="font-semibold text-gray-900">{filteredCourses.length}</span> courses
         </p>
       </div>
 
-      {/* Course Grid */}
       {filteredCourses.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((course) => (

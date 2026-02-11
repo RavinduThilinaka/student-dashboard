@@ -8,10 +8,10 @@ export default function StudentsPage() {
   const [selectedStatus, setSelectedStatus] = useState('all')
 
   const students = [
-    { id: 1, name: 'Alice Johnson', email: 'alice@example.com', phone: '+1 (555) 123-4567', status: 'Active', courses: 4, year: 3, gpa: 3.8 },
-    { id: 2, name: 'Bob Williams', email: 'bob@example.com', phone: '+1 (555) 987-6543', status: 'Active', courses: 3, year: 2, gpa: 3.5 },
-    { id: 3, name: 'Charlie Brown', email: 'charlie@example.com', phone: '+1 (555) 456-7890', status: 'Graduated', courses: 5, year: 4, gpa: 3.9 },
-    { id: 4, name: 'Diana Miller', email: 'diana@example.com', phone: '+1 (555) 234-5678', status: 'Inactive', courses: 2, year: 1, gpa: 3.2 },
+    { id: 1, name: 'Ravindu', email: 'ravindu@gmail.com', phone: '+94 123456789', status: 'Active', courses: 4, year: 3, gpa: 3.8 },
+    { id: 2, name: 'Praveen', email: 'praveen@gmail.com', phone: '+94 987654321', status: 'Active', courses: 3, year: 2, gpa: 3.5 },
+    { id: 3, name: 'Omath',   email: 'ometh@gmail.com',   phone: '+94 1122334455', status: 'Graduated', courses: 5, year: 4, gpa: 3.9 },
+    { id: 4, name: 'Diana Miller', email: 'kaweesha@gmail.com', phone: '+94 9988776655', status: 'Inactive', courses: 2, year: 1, gpa: 3.2 },
   ]
 
   const statuses = ['all', 'Active', 'Inactive', 'Graduated']
@@ -25,7 +25,6 @@ export default function StudentsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -42,7 +41,6 @@ export default function StudentsPage() {
         </button>
       </div>
 
-      {/* Search and Filter */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1 relative">
@@ -69,7 +67,6 @@ export default function StudentsPage() {
         </div>
       </div>
 
-      {/* Results Count */}
       <div className="flex items-center justify-between">
         <p className="text-sm text-gray-600">
           Showing <span className="font-medium text-gray-900">{filteredStudents.length}</span> students
@@ -81,19 +78,18 @@ export default function StudentsPage() {
         )}
       </div>
 
-      {/* Students Table */}
       {filteredStudents.length > 0 ? (
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="bg-gray-50 border-b border-gray-200">
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Courses</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Year</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center">GPA</th>
+                  <th className="px-4 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Student</th>
+                  <th className="px-4 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Contact</th>
+                  <th className="px-4 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Status</th>
+                  <th className="px-4 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Courses</th>
+                  <th className="px-4 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider text-center">Year</th>
+                  <th className="px-4 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider text-center">GPA</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -101,7 +97,7 @@ export default function StudentsPage() {
                   <tr key={student.id} className="hover:bg-gray-50/80 transition-colors">
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="h-9 w-9 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mr-3 shadow-sm">
+                        <div className="h-9 w-9 rounded-full bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center mr-3 shadow-sm">
                           <span className="text-sm font-semibold text-white">
                             {student.name.charAt(0)}
                           </span>
