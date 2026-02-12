@@ -26,14 +26,31 @@ export default function StudentForm({ onSubmit, onCancel }: StudentFormProps) {
     
     if (!formData.name.trim()) newErrors.name = 'Name is required'
     if (!formData.email.trim()) newErrors.email = 'Email is required'
-    if (!formData.phone.trim()) newErrors.phone = 'Phone is required'
+    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required'
     if (!formData.address.trim()) newErrors.address = 'Address is required'
     
     if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
       newErrors.email = 'Invalid email format'
     }
     
+    // Phone validation - only numbers, exactly 10 digits
+    if (formData.phone) {
+      const phoneRegex = /^\d{10}$/
+      if (!phoneRegex.test(formData.phone)) {
+        newErrors.phone = 'Phone number must be exactly 10 digits'
+      }
+    }
+    
     return newErrors
+  }
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Remove all non-numeric characters
+    const value = e.target.value.replace(/[^0-9]/g, '')
+    // Limit to 10 digits
+    if (value.length <= 10) {
+      setFormData({...formData, phone: value})
+    }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -42,6 +59,17 @@ export default function StudentForm({ onSubmit, onCancel }: StudentFormProps) {
     
     if (Object.keys(newErrors).length === 0) {
       onSubmit(formData)
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        department: 'Computer Science',
+        year: '1',
+        address: '',
+        status: 'Active'
+      })
+      setErrors({})
     } else {
       setErrors(newErrors)
     }
@@ -74,15 +102,17 @@ export default function StudentForm({ onSubmit, onCancel }: StudentFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Phone *</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
         <input
           type="text"
           value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value})}
+          onChange={handlePhoneChange}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="+94 77 123 4567"
+          placeholder="0771234567"
+          maxLength={10}
         />
         {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+        <p className="text-gray-400 text-xs mt-1">Enter 10 digits only (e.g., 0771234567)</p>
       </div>
 
       <div>
