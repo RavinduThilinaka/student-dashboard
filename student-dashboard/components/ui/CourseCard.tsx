@@ -1,3 +1,4 @@
+// components/ui/CourseCard.tsx
 import { Users, Clock, BookOpen, TrendingUp } from 'lucide-react'
 
 interface CourseCardProps {
@@ -77,7 +78,7 @@ export default function CourseCard({ course }: CourseCardProps) {
           </div>
           <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <div 
-              className={`h-full bg-liner-to-r ${getLevelColor().replace('bg-', 'from-')} ${getLevelColor().replace('500', '600').replace('bg-', 'to-')}`}
+              className={`h-full bg-linear-to-r ${getLevelColor().replace('bg-', 'from-')} ${getLevelColor().replace('500', '600').replace('bg-', 'to-')}`}
               style={{ width: `${progress}%` }}
             />
           </div>
