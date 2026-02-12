@@ -11,7 +11,6 @@ import {
   ChevronLeft,
   ChevronRight,
   LogOut,
-  Bell,
   HelpCircle
 } from 'lucide-react'
 import Link from 'next/link'
@@ -23,11 +22,11 @@ const menuItems = [
   { icon: Users, label: 'Students', href: '/students', gradient: 'from-green-500 to-green-600' },
   { icon: User, label: 'Profile', href: '/profile', gradient: 'from-pink-500 to-pink-600' },
   { icon: Settings, label: 'Settings', href: '#', gradient: 'from-gray-500 to-gray-600' },
+  { icon: HelpCircle, label: 'Help', href: '#', gradient: 'from-indigo-500 to-indigo-600' },
 ]
 
 const bottomMenuItems = [
-  { icon: Bell, label: 'Notifications', href: '#', gradient: 'from-yellow-500 to-yellow-600' },
-  { icon: HelpCircle, label: 'Help', href: '#', gradient: 'from-indigo-500 to-indigo-600' },
+ 
   { icon: LogOut, label: 'Logout', href: '#', gradient: 'from-red-500 to-red-600' },
 ]
 
@@ -123,11 +122,6 @@ export default function Sidebar() {
                           ? 'text-white'
                           : 'text-gray-500 group-hover:text-gray-700'
                       }`} />
-                      
-                      
-                      {item.label === 'Notifications' && (
-                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 border-2 border-white rounded-full"></span>
-                      )}
                     </div>
 
                     
@@ -195,7 +189,6 @@ export default function Sidebar() {
               )
             })}
           </ul>
-
         </div>
       </div>
     </aside>
