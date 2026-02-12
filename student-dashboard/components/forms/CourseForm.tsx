@@ -39,20 +39,22 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
       newErrors.instructor = 'Instructor is required'
     }
     
-    // Duration validation - ONLY 2 DIGITS ALLOWED
+    // Duration validation
     if (!formData.duration.trim()) {
       newErrors.duration = 'Duration is required'
     } else if (!/^\d{1,2}$/.test(formData.duration)) {
       newErrors.duration = 'Only 1-2 digits allowed (e.g., 8, 12, 16)'
     }
     
-    // Max Students validation
-    if (!formData.maxStudents) {
+    // MAX STUDENTS - MUST BE GREATER THAN 30
+    if (formData.maxStudents === '' || formData.maxStudents === null || formData.maxStudents === undefined) {
       newErrors.maxStudents = 'Max students is required'
     } else {
-      const num = parseInt(formData.maxStudents)
+      const num = Number(formData.maxStudents)
       if (isNaN(num) || num <= 0) {
         newErrors.maxStudents = 'Must be a positive number'
+      } else if (num <= 30) {  // MUST BE GREATER THAN 30
+        newErrors.maxStudents = 'Max students must be greater than 30'
       } else if (num > 100) {
         newErrors.maxStudents = 'Cannot exceed 100 students'
       }
@@ -62,10 +64,19 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
   }
 
   const handleDurationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Only allow numbers and limit to 2 digits
     const value = e.target.value.replace(/[^0-9]/g, '')
     if (value.length <= 2) {
       setFormData({...formData, duration: value})
+    }
+  }
+
+  const handleMaxStudentsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setFormData({...formData, maxStudents: value})
+    
+    // Clear error when typing
+    if (errors.maxStudents) {
+      setErrors({...errors, maxStudents: ''})
     }
   }
 
@@ -74,12 +85,23 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
     const newErrors = validate()
     
     if (Object.keys(newErrors).length === 0) {
-      // Add "weeks" to duration for display
       const formattedData = {
         ...formData,
         duration: `${formData.duration} weeks`
       }
       onSubmit(formattedData)
+      
+      // Reset form
+      setFormData({
+        title: '',
+        description: '',
+        instructor: '',
+        duration: '',
+        maxStudents: '',
+        category: 'Programming',
+        level: 'Beginner'
+      })
+      setErrors({})
     } else {
       setErrors(newErrors)
     }
@@ -158,11 +180,9 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
           <input
             type="number"
             value={formData.maxStudents}
-            onChange={(e) => setFormData({...formData, maxStudents: e.target.value})}
+            onChange={handleMaxStudentsChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="30"
-            min="1"
-            max="100"
+            placeholder="35"
           />
           {errors.maxStudents && <p className="text-red-500 text-xs mt-1">{errors.maxStudents}</p>}
         </div>
