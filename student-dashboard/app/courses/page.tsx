@@ -1,4 +1,4 @@
-// app/courses/page.tsx
+
 'use client'
 
 import { useState } from 'react'
@@ -14,13 +14,13 @@ export default function CoursesPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // Dummy data
+ 
   const [courses, setCourses] = useState([
     {
       id: 1,
       title: 'Web Development Fundamentals',
       description: 'Learn HTML, CSS, and JavaScript from scratch',
-      instructor: 'John Doe',
+      instructor: 'Ravindu',
       duration: '12 weeks',
       students: 45,
       maxStudents: 50,
@@ -31,7 +31,7 @@ export default function CoursesPage() {
       id: 2,
       title: 'React & Next.js Mastery',
       description: 'Build modern web applications with React and Next.js',
-      instructor: 'Jane Smith',
+      instructor: 'Praveen',
       duration: '10 weeks',
       students: 38,
       maxStudents: 40,
@@ -42,7 +42,7 @@ export default function CoursesPage() {
       id: 3,
       title: 'Data Structures & Algorithms',
       description: 'Master essential computer science concepts',
-      instructor: 'Dr. Robert Chen',
+      instructor: 'Dr. Ometh',
       duration: '14 weeks',
       students: 60,
       maxStudents: 60,
@@ -53,7 +53,7 @@ export default function CoursesPage() {
       id: 4,
       title: 'UI/UX Design Principles',
       description: 'Learn user-centered design, wireframing, and prototyping',
-      instructor: 'Sarah Johnson',
+      instructor: 'Dileepa',
       duration: '8 weeks',
       students: 32,
       maxStudents: 35,
@@ -64,7 +64,7 @@ export default function CoursesPage() {
       id: 5,
       title: 'Python for Data Science',
       description: 'Master Python programming for data analysis',
-      instructor: 'Dr. Emily Watson',
+      instructor: 'Dr. Namal',
       duration: '12 weeks',
       students: 52,
       maxStudents: 55,
@@ -107,7 +107,7 @@ export default function CoursesPage() {
     return matchesSearch && matchesCategory && matchesLevel
   })
 
-  // Loading State
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -119,7 +119,6 @@ export default function CoursesPage() {
     )
   }
 
-  // Error State
   if (error) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -142,7 +141,7 @@ export default function CoursesPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Courses</h1>
@@ -157,7 +156,6 @@ export default function CoursesPage() {
         </button>
       </div>
 
-      {/* Form Modal - NO SCROLLBAR */}
       {isFormOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl max-w-lg w-full"> {/* Removed overflow-y-auto and max-h */}
@@ -174,7 +172,6 @@ export default function CoursesPage() {
         </div>
       )}
 
-      {/* Search & Filters */}
       <div className="bg-white p-4 rounded-lg border border-gray-200">
         <div className="flex flex-col md:flex-row gap-3">
           <div className="flex-1 relative">
@@ -208,12 +205,10 @@ export default function CoursesPage() {
         </div>
       </div>
 
-      {/* Results Count */}
       <p className="text-gray-600">
         Showing {filteredCourses.length} of {courses.length} courses
       </p>
 
-      {/* Courses Grid */}
       {filteredCourses.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCourses.map((course) => (
@@ -221,7 +216,7 @@ export default function CoursesPage() {
           ))}
         </div>
       ) : (
-        // Empty State
+
         <div className="bg-white p-12 text-center rounded-lg border border-gray-200">
           <div className="bg-gray-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <BookOpen className="h-8 w-8 text-gray-500" />
