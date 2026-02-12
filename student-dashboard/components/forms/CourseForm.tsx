@@ -178,7 +178,7 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
             value={formData.maxStudents}
             onChange={handleMaxStudentsChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="35"
+            placeholder="30"
           />
           {errors.maxStudents && <p className="text-red-500 text-xs mt-1">{errors.maxStudents}</p>}
         </div>
