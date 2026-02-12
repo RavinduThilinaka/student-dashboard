@@ -1,4 +1,4 @@
-// components/ui/CourseCard.tsx
+
 import { Users, Clock, BookOpen, TrendingUp } from 'lucide-react'
 
 interface CourseCardProps {

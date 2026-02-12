@@ -1,4 +1,4 @@
-// app/students/page.tsx
+
 'use client'
 
 import { useState } from 'react'
@@ -13,7 +13,6 @@ export default function StudentsPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
-  // Dummy data
   const [students, setStudents] = useState([
     { id: 1, name: 'Ravindu Silva', email: 'ravindu@gmail.com', phone: '+94 77 123 4567', status: 'Active', courses: 4, year: 3, gpa: 3.8, department: 'Computer Science' },
     { id: 2, name: 'Praveen Kumar', email: 'praveen@gmail.com', phone: '+94 71 234 5678', status: 'Active', courses: 3, year: 2, gpa: 3.5, department: 'Software Engineering' },
@@ -56,7 +55,6 @@ export default function StudentsPage() {
     return matchesSearch && matchesStatus && matchesYear
   })
 
-  // Loading State
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -68,7 +66,6 @@ export default function StudentsPage() {
     )
   }
 
-  // Error State
   if (error) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -91,7 +88,7 @@ export default function StudentsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Students</h1>
@@ -106,7 +103,6 @@ export default function StudentsPage() {
         </button>
       </div>
 
-      {/* Form Modal - NO SCROLLBAR */}
       {isFormOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl max-w-lg w-full"> {/* Removed overflow-y-auto and max-h */}
@@ -123,7 +119,6 @@ export default function StudentsPage() {
         </div>
       )}
 
-      {/* Search & Filters */}
       <div className="bg-white p-4 rounded-lg border border-gray-200">
         <div className="flex flex-col md:flex-row gap-3">
           <div className="flex-1 relative">
@@ -157,12 +152,10 @@ export default function StudentsPage() {
         </div>
       </div>
 
-      {/* Results Count */}
       <p className="text-gray-600">
         Showing {filteredStudents.length} of {students.length} students
       </p>
 
-      {/* Students Table */}
       {filteredStudents.length > 0 ? (
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
@@ -225,7 +218,7 @@ export default function StudentsPage() {
           </div>
         </div>
       ) : (
-        // Empty State
+      
         <div className="bg-white p-12 text-center rounded-lg border border-gray-200">
           <div className="bg-gray-100 p-3 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
             <GraduationCap className="h-8 w-8 text-gray-500" />

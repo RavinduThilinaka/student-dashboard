@@ -1,4 +1,4 @@
-// components/forms/StudentForm.tsx
+
 'use client'
 
 import { useState } from 'react'
@@ -33,7 +33,6 @@ export default function StudentForm({ onSubmit, onCancel }: StudentFormProps) {
       newErrors.email = 'Invalid email format'
     }
     
-    // Phone validation - only numbers, exactly 10 digits
     if (formData.phone) {
       const phoneRegex = /^\d{10}$/
       if (!phoneRegex.test(formData.phone)) {
@@ -45,9 +44,9 @@ export default function StudentForm({ onSubmit, onCancel }: StudentFormProps) {
   }
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Remove all non-numeric characters
+
     const value = e.target.value.replace(/[^0-9]/g, '')
-    // Limit to 10 digits
+
     if (value.length <= 10) {
       setFormData({...formData, phone: value})
     }
@@ -59,7 +58,6 @@ export default function StudentForm({ onSubmit, onCancel }: StudentFormProps) {
     
     if (Object.keys(newErrors).length === 0) {
       onSubmit(formData)
-      // Reset form
       setFormData({
         name: '',
         email: '',

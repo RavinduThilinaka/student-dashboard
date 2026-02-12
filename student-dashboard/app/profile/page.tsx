@@ -251,8 +251,7 @@ export default function ProfilePage() {
                     Verified
                   </span>
                 </div>
-                
-              
+                          
                 <div className="w-full mt-6">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-xs font-medium text-gray-500">Profile Completion</span>
@@ -294,8 +293,7 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-
-         
+        
             <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 hover:shadow-2xl transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-2 bg-orange-50 rounded-lg">
@@ -379,7 +377,6 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

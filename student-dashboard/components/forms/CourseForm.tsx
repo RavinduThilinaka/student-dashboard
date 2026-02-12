@@ -1,4 +1,4 @@
-// components/forms/CourseForm.tsx
+
 'use client'
 
 import { useState } from 'react'
@@ -24,36 +24,35 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
   const validate = () => {
     const newErrors: any = {}
     
-    // Title validation
+   
     if (!formData.title.trim()) {
       newErrors.title = 'Title is required'
     }
     
-    // Description validation
+    
     if (!formData.description.trim()) {
       newErrors.description = 'Description is required'
     }
-    
-    // Instructor validation
+  
     if (!formData.instructor.trim()) {
       newErrors.instructor = 'Instructor is required'
     }
     
-    // Duration validation
+  
     if (!formData.duration.trim()) {
       newErrors.duration = 'Duration is required'
     } else if (!/^\d{1,2}$/.test(formData.duration)) {
       newErrors.duration = 'Only 1-2 digits allowed (e.g., 8, 12, 16)'
     }
     
-    // MAX STUDENTS - MUST BE GREATER THAN 30
+
     if (formData.maxStudents === '' || formData.maxStudents === null || formData.maxStudents === undefined) {
       newErrors.maxStudents = 'Max students is required'
     } else {
       const num = Number(formData.maxStudents)
       if (isNaN(num) || num <= 0) {
         newErrors.maxStudents = 'Must be a positive number'
-      } else if (num <= 30) {  // MUST BE GREATER THAN 30
+      } else if (num <= 30) {  
         newErrors.maxStudents = 'Max students must be greater than 30'
       } else if (num > 100) {
         newErrors.maxStudents = 'Cannot exceed 100 students'
@@ -74,7 +73,7 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
     const value = e.target.value
     setFormData({...formData, maxStudents: value})
     
-    // Clear error when typing
+  
     if (errors.maxStudents) {
       setErrors({...errors, maxStudents: ''})
     }
@@ -91,7 +90,7 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
       }
       onSubmit(formattedData)
       
-      // Reset form
+     
       setFormData({
         title: '',
         description: '',
@@ -109,7 +108,7 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
-      {/* Title Field */}
+      
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Course Title <span className="text-red-500">*</span>
@@ -124,7 +123,6 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title}</p>}
       </div>
 
-      {/* Description Field */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Description <span className="text-red-500">*</span>
@@ -138,8 +136,7 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         />
         {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
       </div>
-
-      {/* Instructor & Duration Row */}
+    
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -170,8 +167,7 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
           {errors.duration && <p className="text-red-500 text-xs mt-1">{errors.duration}</p>}
         </div>
       </div>
-
-      {/* Max Students & Category Row */}
+     
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -202,7 +198,6 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         </div>
       </div>
 
-      {/* Level Field */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Level</label>
         <select
@@ -216,7 +211,6 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         </select>
       </div>
 
-      {/* Form Actions */}
       <div className="flex gap-3 pt-2">
         <button
           type="submit"
