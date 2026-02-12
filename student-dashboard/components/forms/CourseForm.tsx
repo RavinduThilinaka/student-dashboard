@@ -24,13 +24,49 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
   const validate = () => {
     const newErrors: any = {}
     
-    if (!formData.title.trim()) newErrors.title = 'Title is required'
-    if (!formData.description.trim()) newErrors.description = 'Description is required'
-    if (!formData.instructor.trim()) newErrors.instructor = 'Instructor is required'
-    if (!formData.duration.trim()) newErrors.duration = 'Duration is required'
-    if (!formData.maxStudents) newErrors.maxStudents = 'Max students is required'
+    // Title validation
+    if (!formData.title.trim()) {
+      newErrors.title = 'Title is required'
+    }
+    
+    // Description validation
+    if (!formData.description.trim()) {
+      newErrors.description = 'Description is required'
+    }
+    
+    // Instructor validation
+    if (!formData.instructor.trim()) {
+      newErrors.instructor = 'Instructor is required'
+    }
+    
+    // Duration validation - ONLY 2 DIGITS ALLOWED
+    if (!formData.duration.trim()) {
+      newErrors.duration = 'Duration is required'
+    } else if (!/^\d{1,2}$/.test(formData.duration)) {
+      newErrors.duration = 'Only 1-2 digits allowed (e.g., 8, 12, 16)'
+    }
+    
+    // Max Students validation
+    if (!formData.maxStudents) {
+      newErrors.maxStudents = 'Max students is required'
+    } else {
+      const num = parseInt(formData.maxStudents)
+      if (isNaN(num) || num <= 0) {
+        newErrors.maxStudents = 'Must be a positive number'
+      } else if (num > 100) {
+        newErrors.maxStudents = 'Cannot exceed 100 students'
+      }
+    }
     
     return newErrors
+  }
+
+  const handleDurationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Only allow numbers and limit to 2 digits
+    const value = e.target.value.replace(/[^0-9]/g, '')
+    if (value.length <= 2) {
+      setFormData({...formData, duration: value})
+    }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,16 +74,24 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
     const newErrors = validate()
     
     if (Object.keys(newErrors).length === 0) {
-      onSubmit(formData)
+      // Add "weeks" to duration for display
+      const formattedData = {
+        ...formData,
+        duration: `${formData.duration} weeks`
+      }
+      onSubmit(formattedData)
     } else {
       setErrors(newErrors)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3"> {/* Reduced from space-y-4 */}
+    <form onSubmit={handleSubmit} className="space-y-3">
+      {/* Title Field */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Course Title *</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Course Title <span className="text-red-500">*</span>
+        </label>
         <input
           type="text"
           value={formData.title}
@@ -58,21 +102,27 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title}</p>}
       </div>
 
+      {/* Description Field */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Description *</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Description <span className="text-red-500">*</span>
+        </label>
         <textarea
           value={formData.description}
           onChange={(e) => setFormData({...formData, description: e.target.value})}
-          rows={2} 
+          rows={2}
           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter course description"
         />
         {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
       </div>
 
-      <div className="grid grid-cols-2 gap-3"> {/* Reduced from gap-4 */}
+      {/* Instructor & Duration Row */}
+      <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Instructor *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Instructor <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             value={formData.instructor}
@@ -84,27 +134,35 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Duration *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Duration (weeks) <span className="text-red-500">*</span>
+          </label>
           <input
             type="text"
             value={formData.duration}
-            onChange={(e) => setFormData({...formData, duration: e.target.value})}
+            onChange={handleDurationChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="e.g., 12 weeks"
+            placeholder="e.g., 12"
+            maxLength={2}
           />
           {errors.duration && <p className="text-red-500 text-xs mt-1">{errors.duration}</p>}
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3"> {/* Reduced from gap-4 */}
+      {/* Max Students & Category Row */}
+      <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Max Students *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Max Students <span className="text-red-500">*</span>
+          </label>
           <input
             type="number"
             value={formData.maxStudents}
             onChange={(e) => setFormData({...formData, maxStudents: e.target.value})}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="30"
+            min="1"
+            max="100"
           />
           {errors.maxStudents && <p className="text-red-500 text-xs mt-1">{errors.maxStudents}</p>}
         </div>
@@ -124,6 +182,7 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         </div>
       </div>
 
+      {/* Level Field */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Level</label>
         <select
@@ -137,7 +196,8 @@ export default function CourseForm({ onSubmit, onCancel }: CourseFormProps) {
         </select>
       </div>
 
-      <div className="flex gap-3 pt-2"> {/* Reduced from pt-4 */}
+      {/* Form Actions */}
+      <div className="flex gap-3 pt-2">
         <button
           type="submit"
           className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
