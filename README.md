@@ -37,10 +37,13 @@ student-dashboard/
 ├── app/
 │   ├── courses/
 │   │   └── page.tsx
+│   │
 │   ├── students/
 │   │   └── page.tsx
+│   │
 │   ├── profile/
 │   │   └── page.tsx
+│   │
 │   ├── layout.tsx
 │   ├── page.tsx
 │   └── globals.css
@@ -51,15 +54,25 @@ student-dashboard/
 │   │   ├── Sidebar.tsx
 │   │   └── Footer.tsx
 │   │
-│   └── ui/
-│       └── CourseCard.tsx
+│   ├── ui/
+│   │   └── CourseCard.tsx
+│   │
+│   └── forms/
+│       ├── CourseForm.tsx
+│       └── StudentForm.tsx
 │
 ├── public/
 │   ├── user.jpg
-│   └── *.svg
+│   └── (other static files)
 │
 ├── .gitignore
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+├── next.config.js
+├── tsconfig.json
 └── README.md
+
 ```
 
 ---
